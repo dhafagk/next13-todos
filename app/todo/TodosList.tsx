@@ -2,7 +2,9 @@ import Link from "next/link";
 import { Todo } from "../../types/todo.type";
 
 const fetchTodos = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const res = await fetch(
+    "https://636dfa14b567eed48acee0bf.mockapi.io/api/v1/todos"
+  );
   const todos: Todo[] = await res.json();
   return todos;
 };
@@ -13,7 +15,7 @@ async function TodosList() {
     <>
       {todos?.map((todo) => (
         <p key={todo.id}>
-          <Link href={`/todos/${todo.id}`}>Todo: {todo.title}</Link>
+          <Link href={`/todo/${todo.id}`}>Todo: {todo.title}</Link>
         </p>
       ))}
     </>
