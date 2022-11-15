@@ -1,14 +1,11 @@
-import { Todo } from "../../types/todo.type";
+"use client";
+
+import { useTodoStore } from "../../store/useTodoStore";
 import { TodoList } from "./TodoList";
 
-const fetchTodos = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-  const todos: Todo[] = await res.json();
-  return todos;
-};
+function Todos() {
+  const todos = useTodoStore((state) => state.todos);
 
-async function Todos() {
-  const todos = await fetchTodos();
   return (
     <>
       {todos?.map((todo) => (

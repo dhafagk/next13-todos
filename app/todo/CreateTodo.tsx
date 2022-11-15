@@ -2,31 +2,24 @@
 
 import { useState } from "react";
 import { Input } from "../../components/ui/Input";
+import { useTodoStore } from "../../store/useTodoStore";
 
 function CreateTodo() {
   const [title, setTitle] = useState<string>("");
+  const createTodo = useTodoStore((state) => state.addTodo);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const res = await fetch("https://jsonplaceholder.typicode.com/todos", {
-      method: "POST",
-      body: JSON.stringify({
-        userId: 1,
-        id: 202,
-        title: title,
-        completed: false,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-
+    createTodo({ id: Math.random(), title: title, completed: false });
     setTitle("");
-
-    const data = await res.json();
-    console.log(data);
   };
   return (
+    // <Input
+    //   placeholder="Add Todo..."
+    //   handleSubmit={handleSubmit}
+    //   title={title}
+    //   handleChangeInput={(e) => setTitle(e.target.value)}
+    // />
     <form onSubmit={handleSubmit}>
       <div className="form-control py-10">
         <div className="input-group input-group-sm justify-center">

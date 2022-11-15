@@ -12,7 +12,7 @@ export const Input = ({
   handleChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }): JSX.Element => {
   return (
-    <form onSubmit={(e) => handleSubmit}>
+    <form onSubmit={() => handleSubmit}>
       <div className="form-control py-10">
         <div className="input-group input-group-sm justify-center">
           <input
